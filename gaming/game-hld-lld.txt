@@ -1,0 +1,45 @@
+Requirements:
+
+- 3 dice in a transparent jar 
+- Provide: game start & end time, numbers on top of all dice
+- CPU, ~100ms
+
+--------------
+
+start -> detect the motion -> start_time
+end -> detected motion stops -> end_time
+
+yolo based dice det - 4ms + clf - 1.2 ms
+
+1. detect the dice -> using image processing
+2. detect all the dots
+
+---------------
+
+rtsp stream -> frame_reader -> [frame queue] -> take frame from queue -> Processor -> json -> [metadata queue] -> client (metadata consumer) -> DB
+
+---------------
+
+DiceDetection:
+- preprocess()
+- infer()
+- postprocess()
+
+DiceClassification:
+- preprocess()
+- infer()
+- postprocess()
+
+MotionDetection:
+ - motion_det()
+
+GameProcessorClass(MotionDetection, DiceDetection, DiceClassification):
+ - sub_the_queue 
+ - readFrames() -> array
+ - start_time, end_time -> md.motion_det(array)
+ - det.preprocess(array) -> preprocessed_frame
+ - det.infer(preprocessed_frame) -> obj_det_results
+ - cls.preprocess(croped_frames) -> preprocessed_frame_clf
+ - cls.infer(preprocessed_frame) -> cls_results
+ - res_json{start_time, end_time, dice1:cls_results[0], dice2:cls_results[1], dice3:cls_results[2]}
+ - push res_json to [metadata queue]

@@ -1,0 +1,67 @@
+# Person Attribute-Based Image Search System Design
+
+Design a scalable, real-time person attribute-based image search system that can search for individuals across 200 surveillance cameras using visual attributes extracted from their appearances.
+
+Functional Requirements
+
+ 1. The system should process video streams from 200 cameras.
+ 2. It should detect and extract person-related attributes, including:
+    - Age group (child, young adult, adult, elderly).
+    - Gender.
+    - Shirt color.
+    - Pant/trouser color.
+    - Other relevant visual attributes.
+3. The system should index detected persons and their associated attributes.
+4. Users should be able to search for persons using one or more attribute combinations. For example:
+    - Male, approximately 25-35 years old.
+    - Wearing a red shirt and black pants.
+    - Female wearing a blue shirt.
+5. The system should support searching across historical data from the last 60 days.
+6. Search results should include:
+    - Person image or cropped image.
+    - Camera ID.
+    - Timestamp.
+    - Extracted attributes.
+    - Confidence scores.
+
+Non-Functional Requirements
+
+ 1. Scalability: Support 200 cameras with the ability to scale to more cameras.
+ 2. Low latency: Return search results within an acceptable response time.
+ 3. High availability: Continue operating despite individual component failures.
+ 4. Storage efficiency: Efficiently store and retrieve 60 days of historical data.
+ 5. Search accuracy: Handle variations in lighting, camera angles, occlusion, and imperfect attribute detection.
+
+
+System Design Deliverables
+
+1. High-Level Design (HLD)
+    - Overall system architecture.
+    - Data ingestion pipeline.
+    - Video processing pipeline.
+    - Attribute extraction and indexing.
+    - Search architecture.
+    - Storage architecture.
+
+2. Low-Level Design (LLD)
+    - Component-level design.
+    - Database and index schema.
+    - API design.
+    - Data flow between components.
+    - Attribute extraction and search logic.
+
+3. LLD Pseudocode
+    - Video ingestion.
+    - Person detection.
+    - Attribute extraction.
+    - Metadata indexing.
+    - Attribute-based search.
+    - Historical data retention and cleanup.
+
+4. Hardware Estimation
+    - CPU and GPU requirements.
+    - RAM requirements.
+    - Storage requirements for 60 days.
+    - Network bandwidth.
+    - Number of processing and storage nodes.
+    - Estimated infrastructure cost.

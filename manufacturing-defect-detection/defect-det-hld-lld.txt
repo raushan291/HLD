@@ -1,0 +1,24 @@
+# Manufacturing Defect Detection
+
+A manufacturing plant has multiple conveyor belts, with one camera installed above each belt. 
+Products move continuously, and the system must automatically identify defective products, 
+record the results, and optionally send a reject command to the factory's PLC.
+
+# Requirements and assumptions
+
+Functional requirements
+- Capture a continuous video stream from one camera per conveyor belt.
+- Detect products moving along the conveyor.
+- Inspect each product for defects (scratches, cracks, dents, missing components, etc.).
+- Classify each inspected product as PASS, FAIL, or REVIEW.
+- Record the defect category, confidence, product ID, camera ID, and timestamp.
+- Send the inspection result to a metadata queue for storage and monitoring.
+- Optionally signal the PLC to reject defective products.
+
+Non-functional requirements
+- CPU-based real-time inference
+- Target processing latency of approximately 100 ms per product
+- Process every product exactly once logically, even if duplicate messages occur.
+- Support multiple cameras/conveyor belts.
+- Handle dropped frames, RTSP disconnects, and inference failures.
+- Minimize production-line disruption.
